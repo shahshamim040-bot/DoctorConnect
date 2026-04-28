@@ -3,227 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SebaLink BD | বাংলাদেশের ১ নম্বর ডক্টর ডিরেক্টরি</title>
+    <title>SebaLink BD | বাংলাদেশের ১ নম্বর ডিরেক্টরি</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --primary: #006a4e; --secondary: #f42a41; --dark: #004d00; --bg: #f4f7f6; }
-        body { font-family: 'Hind Siliguri', sans-serif; margin: 0; background: var(--bg); overflow-x: hidden; }
+        :root { --primary: #006a4e; --secondary: #f42a41; --accent: #f2c94c; --bg: #f0f4f2; }
+        body { font-family: 'Hind Siliguri', sans-serif; margin: 0; background: var(--bg); color: #333; scroll-behavior: smooth; }
 
-        /* চলন্ত টেক্সট (Marquee) */
-        .notice-top { background: #fff3cd; color: #856404; padding: 10px; font-weight: bold; border-bottom: 1px solid #ffeeba; }
-        .notice-bottom { background: #d1ecf1; color: #0c5460; padding: 15px; font-weight: bold; margin-top: 30px; }
-
-        /* নেভিগেশন */
-        .top-nav { background: var(--primary); color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-        .logo { font-size: 1.6em; font-weight: bold; }
-
-        /* সাইডবার মেনু */
-        .sidebar { height: 100%; width: 0; position: fixed; z-index: 2000; top: 0; background: #111; overflow-x: hidden; transition: 0.5s; padding-top: 60px; }
-        .left-sidebar { left: 0; }
-        .right-sidebar { right: 0; background: #f8f9fa; border-left: 2px solid var(--primary); }
-        .sidebar a { padding: 15px 25px; text-decoration: none; font-size: 18px; color: #818181; display: block; border-bottom: 1px solid #222; }
-        .right-sidebar a { color: var(--primary); border-bottom: 1px solid #ddd; }
-        .sidebar a:hover { color: white; background: var(--primary); }
-        .closebtn { position: absolute; top: 0; right: 25px; font-size: 36px; color: white; cursor: pointer; }
-
-        /* মেইন কন্টেন্ট */
-        .container { max-width: 1200px; margin: auto; padding: 20px; }
+        /* চলন্ত নোটিশ */
+        .marquee-top { background: #fff3cd; color: #856404; padding: 10px; font-weight: bold; border-bottom: 2px solid #ffeeba; position: fixed; width: 100%; top: 0; z-index: 1100; }
         
-        /* লগইন প্যানেল */
-        .auth-section { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 40px; text-align: center; }
-        .input-group { margin-bottom: 15px; }
-        .input-group input { width: 100%; max-width: 400px; padding: 12px; border-radius: 10px; border: 1px solid #ddd; outline: none; }
-        .btn-login { background: var(--primary); color: white; padding: 12px 50px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; }
-        .reg-info { margin-top: 20px; font-size: 0.9em; color: #555; border-top: 1px solid #eee; padding-top: 20px; }
+        /* নেভিগেশন */
+        .top-nav { background: var(--primary); color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 40px; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .logo { font-size: 1.6em; font-weight: bold; color: var(--accent); }
 
-        /* ডিপার্টমেন্ট গাইড */
-        .dept-guide { background: white; padding: 25px; border-radius: 15px; margin-bottom: 30px; border-left: 8px solid var(--secondary); }
-        .dept-guide h2 { color: var(--secondary); margin-top: 0; }
+        /* সাইডবার (শুধুমাত্র ডক্টরদের জন্য) */
+        .sidebar { height: 100%; width: 0; position: fixed; z-index: 2000; top: 0; left: 0; background: #fff; overflow-x: hidden; transition: 0.5s; box-shadow: 2px 0 15px rgba(0,0,0,0.2); }
+        .sidebar-content { padding: 50px 25px; }
+        .closebtn { position: absolute; top: 10px; right: 25px; font-size: 36px; cursor: pointer; }
 
-        /* ডক্টর প্রোফাইল কার্ড */
-        .doc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
-        .doc-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: 0.3s; position: relative; border: 1px solid #eee; }
-        .doc-card:hover { transform: translateY(-10px); border-color: var(--primary); }
-        .doc-img { width: 100%; height: 250px; background: #eee; text-align: center; overflow: hidden; }
-        .doc-img img { height: 100%; object-fit: cover; }
-        .doc-body { padding: 20px; }
-        .doc-name { font-size: 1.4em; color: var(--primary); font-weight: 700; margin: 0; }
-        .doc-spec { color: var(--secondary); font-weight: bold; margin: 5px 0; }
-        .doc-info { font-size: 0.9em; color: #666; line-height: 1.6; margin-bottom: 15px; }
-        .btn-profile { display: block; background: #f8f9fa; color: var(--primary); text-align: center; padding: 12px; text-decoration: none; border-radius: 10px; font-weight: bold; border: 1px solid var(--primary); }
-        .btn-profile:hover { background: var(--primary); color: white; }
+        .container { max-width: 1200px; margin: 60px auto 20px auto; padding: 20px; }
 
-        /* রিভিউ সিস্টেম */
-        .review-box { margin-top: 15px; background: #f0fdf4; padding: 10px; border-radius: 10px; font-size: 0.85em; }
-        .star { color: #ffc107; }
+        /* হাসপাতাল ডিরেক্টরি টেবিল */
+        .hospital-box { background: white; border-radius: 20px; padding: 25px; margin-bottom: 40px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .search-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .search-table th { background: var(--primary); color: white; padding: 12px; text-align: left; }
+        .search-table td { padding: 12px; border-bottom: 1px solid #eee; font-size: 0.9em; }
 
-        /* ডক্টর ইনসাইট ড্যাশবোর্ড (লগইন করার পর দেখাবে) */
-        .insight-panel { display: none; background: #111; color: white; padding: 20px; border-radius: 15px; margin-top: 20px; }
-        .insight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center; }
-        .insight-item b { font-size: 1.5em; color: var(--secondary); }
+        /* ডক্টর বিভাগ ও কার্ড */
+        .dept-title { background: var(--secondary); color: white; padding: 10px 25px; border-radius: 30px; display: inline-block; margin-bottom: 20px; font-weight: bold; }
+        .doc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; margin-bottom: 50px; }
+        
+        .doc-card { background: white; border-radius: 25px; border: 1px solid #ddd; padding: 25px; transition: 0.3s; position: relative; }
+        .doc-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        
+        /* ডক্টর লোগো (আপনার ছবির মতো ডিজাইন) */
+        .doc-thumb { width: 85px; height: 85px; border-radius: 50%; background: #e8f5e9; border: 3px solid var(--primary); display: flex; align-items: center; justify-content: center; font-size: 40px; color: var(--primary); margin-bottom: 15px; }
+        .female-thumb { background: #fff1f2; border-color: #e11d48; color: #e11d48; }
 
-        .footer { background: #111; color: #888; padding: 50px 20px; text-align: center; }
-        .footer a { color: var(--primary); text-decoration: none; }
+        .doc-name { font-size: 1.4em; font-weight: 700; margin-bottom: 5px; }
+        .doc-spec { color: var(--primary); font-weight: 600; margin-bottom: 15px; }
+        .doc-desc { font-size: 0.9em; color: #666; line-height: 1.5; margin-bottom: 20px; min-height: 60px; }
+
+        /* সিরিয়াল বাটন (সরাসরি দেখা যাবে) */
+        .btn-call { display: block; background: var(--primary); color: white; text-align: center; padding: 15px; border-radius: 15px; text-decoration: none; font-weight: bold; font-size: 1.1em; transition: 0.3s; }
+        .btn-call:hover { background: #004d3a; }
+
+        /* ফুটারে হাসপাতাল নোটিশ */
+        .footer { background: #111; color: #ccc; padding: 60px 20px; text-align: center; }
+        .footer-notice { background: #1e1e1e; padding: 15px; border-radius: 10px; margin-bottom: 30px; border: 1px solid #333; }
+
+        /* রেসপনসিভ */
+        @media (max-width: 600px) { .top-nav { top: 35px; } .container { margin-top: 80px; } }
     </style>
 </head>
 <body>
 
-<div class="notice-top">
-    <marquee behavior="scroll" direction="left">
-        আপনি কি একজন ডাক্তার? আপনার ডিজিটাল প্রোফাইল তৈরি করতে ইমেইল করুন: shahshamim040@gmail.com | আপনার সেবাকে সবার কাছে পৌঁছে দিন।
-    </marquee>
+<div class="marquee-top">
+    <marquee>আপনি কি একজন ডাক্তার? আপনার প্রোফাইল ও ইনসাইট ড্যাশবোর্ড তৈরি করতে ইমেইল করুন: shahshamim040@gmail.com | আজীবন মেম্বারশিপ ২০০০ টাকা মাত্র।</marquee>
 </div>
 
-<div id="leftMenu" class="sidebar left-sidebar">
-    <span class="closebtn" onclick="closeLeftNav()">×</span>
-    <a href="#"><i class="fas fa-home"></i> হোমপেজ</a>
-    <a href="#" onclick="showDoctorLogin()"><i class="fas fa-user-md"></i> ডক্টর লগইন</a>
-    <a href="mailto:shahshamim040@gmail.com"><i class="fas fa-plus-circle"></i> নতুন একাউন্ট খুলুন</a>
-    <a href="#"><i class="fas fa-hospital"></i> হাসপাতাল এডভার্টাইজ</a>
-    <a href="mailto:shahshamim040@gmail.com"><i class="fas fa-envelope"></i> সাপোর্ট</a>
-</div>
-
-<div id="rightMenu" class="sidebar right-sidebar" style="width: 0;">
-    <span class="closebtn" onclick="closeRightNav()" style="color: #333;">×</span>
-    <h3 style="padding: 20px; color: var(--primary);">বিভাগ নির্বাচন করুন</h3>
-    <a href="#medicine">মেডিসিন বিশেষজ্ঞ</a>
-    <a href="#surgery">সার্জারি বিশেষজ্ঞ</a>
-    <a href="#gastro">গ্যাস্ট্রোএন্টারোলজি</a>
-    <a href="#heart">কার্ডিওলজি (হৃদরোগ)</a>
-    <a href="#gynae">গাইনি ও প্রসূতি</a>
-    <a href="#neuro">নিউরোলজি</a>
+<div id="doctorNav" class="sidebar">
+    <span class="closebtn" onclick="closeNav()">×</span>
+    <div class="sidebar-content">
+        <h2 style="color: var(--primary);">ডক্টর প্যানেল</h2>
+        <p>নতুন ডাক্তাররা তথ্য যোগ করতে লগইন করুন</p>
+        <input type="text" placeholder="ইউজার আইডি" style="width:100%; padding:12px; margin:10px 0; border:1px solid #ddd; border-radius:8px;">
+        <input type="password" placeholder="পাসওয়ার্ড" style="width:100%; padding:12px; margin:10px 0; border:1px solid #ddd; border-radius:8px;">
+        <button style="width:100%; background:var(--primary); color:white; padding:12px; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">লগইন</button>
+        
+        <div style="margin-top:40px; padding:20px; background:#f9f9f9; border-radius:10px;">
+            <h4>নতুন একাউন্ট খুলতে:</h4>
+            <p>আজীবনের জন্য ২,০০০ টাকা পেমেন্ট করে এই ইমেইলে যোগাযোগ করুন:</p>
+            <p><b>shahshamim040@gmail.com</b></p>
+        </div>
+    </div>
 </div>
 
 <div class="top-nav">
-    <button onclick="openLeftNav()" style="background:none; border:none; color:white; font-size:24px; cursor:pointer;">☰</button>
+    <div onclick="openNav()" style="cursor:pointer; font-size: 22px;"><i class="fas fa-user-md"></i> ডক্টর লগইন</div>
     <div class="logo">SebaLink BD</div>
-    <button onclick="openRightNav()" style="background:none; border:none; color:white; font-size:20px; cursor:pointer;"><i class="fas fa-filter"></i> বিভাগ</button>
+    <div><i class="fas fa-search" style="font-size: 20px;"></i></div>
 </div>
 
 <div class="container">
+
+    <div class="hospital-box">
+        <h2 style="color: var(--primary); margin-top: 0;"><i class="fas fa-hospital"></i> প্রধান হাসপাতাল ডিরেক্টরি (বাংলাদেশ)</h2>
+        <p style="font-size: 0.9em; color: #666;">বিভাগ ও শহর অনুযায়ী শীর্ষস্থানীয় হাসপাতালসমূহ:</p>
+        <div style="overflow-x: auto;">
+            <table class="search-table">
+                <thead>
+                    <tr>
+                        <th>শহর</th>
+                        <th>হাসপাতালের নাম</th>
+                        <th>বিশেষজ্ঞতা</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><b>ঢাকা</b></td><td>ঢাকা মেডিকেল কলেজ, ল্যাবএইড, এভারকেয়ার, স্কয়ার</td><td>সকল বিভাগ</td></tr>
+                    <tr><td><b>চট্টগ্রাম</b></td><td>চট্টগ্রাম মেডিকেল, এভারকেয়ার চট্টগ্রাম, মা ও শিশু হাসপাতাল</td><td>জেনারেল ও মা-শিশু</td></tr>
+                    <tr><td><b>চাঁদপুর</b></td><td>চাঁদপুর সদর হাসপাতাল, আল-আমিন হাসপাতাল, মিডল্যান্ড</td><td>জেনারেল ও ইমার্জেন্সি</td></tr>
+                    <tr><td><b>সিলেট</b></td><td>ওসমানী মেডিকেল, নর্থ ইস্ট মেডিকেল কলেজ</td><td>কিডনি ও মেডিসিন</td></tr>
+                    <tr><td><b>রাজশাহী</b></td><td>রাজশাহী মেডিকেল কলেজ, আমানা হাসপাতাল</td><td>মেডিসিন ও হার্ট</td></tr>
+                    <tr><td><b>কুমিল্লা</b></td><td>কুমিল্লা মেডিকেল, ময়নামতি মেডিকেল কলেজ</td><td>সার্জারি ও গাইনি</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="dept-guide-box" style="background:white; padding:25px; border-radius:20px; margin-bottom:40px;">
+        <h2 style="color: var(--secondary);"><i class="fas fa-info-circle"></i> কোন ডাক্তার কী কাজ করেন?</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
+            <div style="padding:10px; border-left:4px solid var(--primary);"><b>মেডিসিন:</b> জ্বর, ব্যথা ও সাধারণ রোগ।</div>
+            <div style="padding:10px; border-left:4px solid var(--primary);"><b>গ্যাস্ট্রোএন্টারোলজি:</b> পেট, লিভার ও জন্ডিস।</div>
+            <div style="padding:10px; border-left:4px solid var(--primary);"><b>কার্ডিওলজি:</b> হার্ট ও উচ্চ রক্তচাপ।</div>
+            <div style="padding:10px; border-left:4px solid var(--primary);"><b>গাইনি:</b> মা ও নারীদের রোগ।</div>
+            <div style="padding:10px; border-left:4px solid var(--primary);"><b>নিউরোলজি:</b> মাথা ব্যথা ও স্নায়ু।</div>
+            <div style="padding:10px; border-left:4px solid var(--primary);"><b>সার্জারি:</b> টিউমার ও অপারেশন।</div>
+        </div>
+    </div>
+
+    <div class="dept-title">বিশেষজ্ঞ ডাক্তারদের তালিকা</div>
     
-    <div class="auth-section" id="loginBox">
-        <h2>ইউজার ও ডক্টর লগইন</h2>
-        <div class="input-group">
-            <input type="text" placeholder="ইমেইল বা মোবাইল নম্বর">
-        </div>
-        <div class="input-group">
-            <input type="password" placeholder="পাসওয়ার্ড">
-        </div>
-        <button class="btn-login" onclick="simulateLogin()">লগইন করুন</button>
-        
-        <div class="reg-info">
-            <p>নতুন একাউন্ট খুলতে আজীবনের জন্য মাত্র <b>২,০০০ টাকা</b> পেমেন্ট করুন।</p>
-            <p>যোগাযোগ: <a href="mailto:shahshamim040@gmail.com">shahshamim040@gmail.com</a></p>
-        </div>
-
-        <div id="doctorInsight" class="insight-panel">
-            <h3><i class="fas fa-chart-pie"></i> আপনার প্রোফাইল ইনসাইট</h3>
-            <div class="insight-grid">
-                <div class="insight-item"><b>১২৪০</b><br>মোট ভিউ</div>
-                <div class="insight-item"><b>৪৫০</b><br>সিরিয়াল কল</div>
-                <div class="insight-item"><b>৪.৮</b><br>রেটিং</div>
-            </div>
-            <p style="margin-top: 15px; color: #25d366;">● প্রোফাইল লাইভ আছে</p>
-        </div>
-    </div>
-
-    <div class="dept-guide">
-        <h2><i class="fas fa-notes-medical"></i> কোন রোগের জন্য কাকে দেখাবেন?</h2>
-        <p><b>মেডিসিন:</b> সাধারণ জ্বর, কাশি, প্রেসার বা দীর্ঘমেয়াদী শারীরিক সমস্যার জন্য।</p>
-        <p><b>গ্যাস্ট্রোএন্টারোলজি:</b> পেট ব্যথা, জন্ডিস, লিভার বা এসিডিটি সমস্যার জন্য।</p>
-        <p><b>সার্জারি:</b> টিউমার, অ্যাপেন্ডিক্স, হার্নিয়া বা যেকোনো অপারেশনের জন্য।</p>
-    </div>
-
-    <h2><i class="fas fa-user-md"></i> বিশেষজ্ঞ ডাক্তারদের প্রোফাইল</h2>
     <div class="doc-grid">
+        <div class="doc-card">
+            <div class="doc-thumb"><i class="fas fa-user-md"></i></div>
+            <div class="doc-name">অধ্যাপক ডাঃ এস এম এ হাফিজ</div>
+            <div class="doc-spec">মেডিসিন ও গ্যাস্ট্রোএন্টারোলজি বিশেষজ্ঞ</div>
+            <div class="doc-desc">লিভার, পাকস্থলী ও পেটের যাবতীয় রোগের অভিজ্ঞ চিকিৎসক। প্রাক্তন বিভাগীয় প্রধান, সিএমএইচ ঢাকা।</div>
+            <a href="tel:01712345678" class="btn-call"><i class="fas fa-calendar-check"></i> সরাসরি সিরিয়াল নিন</a>
+        </div>
+
+        <div class="doc-card">
+            <div class="doc-thumb female-thumb"><i class="fas fa-user-nurse"></i></div>
+            <div class="doc-name">ডাঃ শানজিদাহ হক</div>
+            <div class="doc-spec">সার্জারি বিশেষজ্ঞ (নারী ও ল্যাপারোস্কোপিক)</div>
+            <div class="doc-desc">পাইলস, ফিস্টুলা, ব্রেস্ট টিউমার ও ল্যাপারোস্কোপিক সার্জারি বিশেষজ্ঞ। কনসালটেন্ট সার্জন।</div>
+            <a href="tel:01700000000" class="btn-call"><i class="fas fa-calendar-check"></i> সরাসরি সিরিয়াল নিন</a>
+        </div>
         
-        <div class="doc-card" id="gastro">
-            <div class="doc-img">
-                <img src="http://googleusercontent.com/docs_img_1" alt="Dr S M A Hafiz">
-            </div>
-            <div class="doc-body">
-                <p class="doc-name">অধ্যাপক ব্রিগে: জেনা: (অবঃ) ডাঃ এস এম এ হাফিজ</p>
-                <p class="doc-spec">মেডিসিন ও গ্যাস্ট্রোএন্টারোলজি বিশেষজ্ঞ</p>
-                <div class="doc-info">
-                    MBBS, FCPS, MD (Gastroenterology), প্রাক্তন উপদেষ্টা ও বিভাগীয় প্রধান, সিএমএইচ ঢাকা।
-                </div>
-                <div class="review-box">
-                    <span class="star">★★★★★</span> (৪৮ রিভিউ) <br>
-                    "খুবই দক্ষ এবং ধৈর্যশীল ডাক্তার।" - ইউজার রিভিউ
-                </div>
-                <a href="#" class="btn-profile">প্রোফাইল দেখুন ও সিরিয়াল নিন</a>
-            </div>
+        <div class="doc-card">
+            <div class="doc-thumb"><i class="fas fa-heartbeat"></i></div>
+            <div class="doc-name">অধ্যাপক ডাঃ মোঃ মিজানুর রহমান</div>
+            <div class="doc-spec">মেডিসিন ও হৃদরোগ বিশেষজ্ঞ</div>
+            <div class="doc-desc">উচ্চ রক্তচাপ, হার্টে ব্লক ও হৃদরোগ জনিত জটিলতার অভিজ্ঞ চিকিৎসক। ঢাকা মেডিকেল কলেজ।</div>
+            <a href="tel:01800000000" class="btn-call"><i class="fas fa-calendar-check"></i> সরাসরি সিরিয়াল নিন</a>
         </div>
-
-        <div class="doc-card" id="medicine">
-            <div class="doc-img">
-                <img src="http://googleusercontent.com/docs_img_2" alt="Dr Mizanur Rahman">
-            </div>
-            <div class="doc-body">
-                <p class="doc-name">অধ্যাপক ডাঃ মোঃ মিজানুর রহমান</p>
-                <p class="doc-spec">মেডিসিন ও হৃদরোগ বিশেষজ্ঞ</p>
-                <div class="doc-info">
-                    MBBS, FCPS (Medicine), MD (Cardiology), বিভাগীয় প্রধান, ঢাকা মেডিকেল কলেজ হাসপাতাল।
-                </div>
-                <div class="review-box">
-                    <span class="star">★★★★☆</span> (৩৫ রিভিউ)
-                </div>
-                <a href="#" class="btn-profile">প্রোফাইল দেখুন ও সিরিয়াল নিন</a>
-            </div>
-        </div>
-
-        <div class="doc-card" id="surgery">
-            <div class="doc-img">
-                <img src="http://googleusercontent.com/docs_img_6" alt="Dr Shanjidah Hoq">
-            </div>
-            <div class="doc-body">
-                <p class="doc-name">ডাঃ শানজিদাহ হক</p>
-                <p class="doc-spec">সার্জারি বিশেষজ্ঞ (ল্যাপারোস্কোপিক ও কোলোরেক্টাল)</p>
-                <div class="doc-info">
-                    MBBS, FCPS (Surgery), কনসালটেন্ট সার্জন। পাইলস, টিউমার ও নারী সার্জারি বিশেষজ্ঞ।
-                </div>
-                <div class="review-box">
-                    <span class="star">★★★★★</span> (৫০ রিভিউ)
-                </div>
-                <a href="#" class="btn-profile">প্রোফাইল দেখুন ও সিরিয়াল নিন</a>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="notice-bottom">
-        <marquee behavior="scroll" direction="right">
-            আপনি কি আপনার হাসপাতালের পরিচিতি বাড়াতে চান? সুলভ মূল্যে বিজ্ঞাপন দিতে আজই যোগাযোগ করুন: shahshamim040@gmail.com
-        </marquee>
     </div>
 
 </div>
 
 <div class="footer">
-    <p>© 2026 SebaLink BD | সুস্থ থাকুন, সাথে থাকুন</p>
-    <p>ডেভেলপড বাই: <b>শামীম</b> | যোগাযোগ: <a href="mailto:shahshamim040@gmail.com">shahshamim040@gmail.com</a></p>
+    <div class="footer-notice">
+        <marquee behavior="scroll" direction="right">আপনি কি আপনার হাসপাতালের পরিচিতি বাড়াতে চান? বিজ্ঞাপন দিতে আমাদের ইমেইল করুন: shahshamim040@gmail.com</marquee>
+    </div>
+    <p>© 2026 <b>SebaLink BD</b> | সুস্থ সমাজ আমাদের কাম্য</p>
+    <p>ডেভেলপার: <b>শামীম</b> | ইমেইল: shahshamim040@gmail.com</p>
 </div>
 
 <script>
-    // সাইডবার কন্ট্রোল
-    function openLeftNav() { document.getElementById("leftMenu").style.width = "280px"; }
-    function closeLeftNav() { document.getElementById("leftMenu").style.width = "0"; }
-    function openRightNav() { document.getElementById("rightMenu").style.width = "280px"; }
-    function closeRightNav() { document.getElementById("rightMenu").style.width = "0"; }
-
-    // লগইন সিমুলেশন
-    function simulateLogin() {
-        alert("লগইন সফল! আপনার ড্যাশবোর্ড নিচে লোড হচ্ছে।");
-        document.getElementById("doctorInsight").style.display = "block";
-        document.querySelector(".reg-info").style.display = "none";
-    }
-
-    function showDoctorLogin() {
-        closeLeftNav();
-        window.scrollTo(0, document.querySelector('#loginBox').offsetTop - 100);
-    }
+    function openNav() { document.getElementById("doctorNav").style.width = "320px"; }
+    function closeNav() { document.getElementById("doctorNav").style.width = "0"; }
 </script>
 
 </body>
