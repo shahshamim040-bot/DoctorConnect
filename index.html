@@ -180,6 +180,24 @@
 </footer>
 
 <script>
+    function loginProcess() {
+        // ইনপুট থেকে ইউজারনেম এবং পাসওয়ার্ড নেওয়া
+        var user = document.getElementById("username").value;
+        var pass = document.getElementById("password").value;
+
+        // আপনার দেওয়া নতুন আইডি এবং পাসওয়ার্ড চেক করা
+        if (user === "shamim_123" && pass === "123456") {
+            alert("লগইন সফল! ড্যাশবোর্ডে স্বাগতম।");
+            // সফল হলে নতুন ড্যাশবোর্ড পেজে নিয়ে যাবে
+            window.location.href = "dashboard.html"; 
+        } else {
+            alert("ভুল আইডি বা পাসওয়ার্ড! আবার চেষ্টা করুন।");
+        }
+    }
+
+    function openNav() { document.getElementById("doctorNav").style.width = "320px"; }
+    function closeNav() { document.getElementById("doctorNav").style.width = "0"; }
+</script><script>
     function openNav() { document.getElementById("doctorNav").style.width = "320px"; }
     function closeNav() { document.getElementById("doctorNav").style.width = "0"; }
 </script>
