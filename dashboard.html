@@ -62,28 +62,37 @@
         <button style="background: #006a4e; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">তথ্য আপডেট করুন</button>
     </div>
 </div>
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+<script type="module">
+      // Firebase initialization
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAFUilQc_DEQMJ73uVQsMOUgOkARzlTico",
-  authDomain: "sebalink-43720.firebaseapp.com",
-  databaseURL: "https://sebalink-43720-default-rtdb.firebaseio.com",
-  projectId: "sebalink-43720",
-  storageBucket: "sebalink-43720.firebasestorage.app",
-  messagingSenderId: "489645766500",
-  appId: "1:489645766500:web:29203aa105dd2eb4d52c71",
-  measurementId: "G-VR1WWX0MLM"
-};
+      const firebaseConfig = {
+        apiKey: "AlzaSyAFUIlQc_DEQMJ73uVQsMOUgOkARzITico",
+        authDomain: "sebalink-43720.firebaseapp.com",
+        databaseURL: "https://sebalink-43720-default-rtdb.firebaseio.com",
+        projectId: "sebalink-43720",
+        storageBucket: "sebalink-43720.firebasestorage.app",
+        messagingSenderId: "489645766500",
+        appId: "1:489645766500:web:d5dd2eb4d52c71",
+        measurementId: "G-VR1WWX0MLM"
+      };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+
+      // লাইভ ভিউজ আপডেট করার ফাংশন
+      const viewsRef = ref(database, 'views');
+      onValue(viewsRef, (snapshot) => {
+        const data = snapshot.val();
+        const viewsElement = document.getElementById("live-views");
+        if (viewsElement) {
+          viewsElement.innerText = data || 0;
+        }
+      });
+    </script>
+  </body>
+</html>
     <script>
   // ডাটাবেজ রেফারেন্স তৈরি করা
   const dbRef = firebase.database().ref('views');
@@ -101,5 +110,6 @@ const analytics = getAnalytics(app);
     return (currentViews || 0) + 1;
   });
         </script>
+    <span id="live-views">0</span>
 </body>
 </html>
