@@ -69,10 +69,11 @@
     <div class="sidebar-content">
         <h2 style="color: var(--primary);">ডক্টর প্যানেল</h2>
         <p>নতুন ডাক্তাররা তথ্য যোগ করতে লগইন করুন</p>
-        <input type="text" placeholder="ইউজার আইডি" style="width:100%; padding:12px; margin:10px 0; border:1px solid #ddd; border-radius:8px;">
-        <input type="password" placeholder="পাসওয়ার্ড" style="width:100%; padding:12px; margin:10px 0; border:1px solid #ddd; border-radius:8px;">
-        <button style="width:100%; background:var(--primary); color:white; padding:12px; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">লগইন</button>
-        
+       
+        <input type="text" id="username" placeholder="ইউজার আইডি" style="width:100%; padding:12px; margin:10px 0; border:1px solid #ddd; border-radius:8px;">
+<input type="password" id="password" placeholder="পাসওয়ার্ড" style="width:100%; padding:12px; margin:10px 0; border:1px solid #ddd; border-radius:8px;">
+<button type="button" onclick="loginProcess()" style="width:100%; background:var(--primary); color:white; padding:12px; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">লগইন করুন</button>
+
         <div style="margin-top:40px; padding:20px; background:#f9f9f9; border-radius:10px;">
             <h4>নতুন একাউন্ট খুলতে:</h4>
             <p>আজীবনের জন্য ২,০০০ টাকা পেমেন্ট করে এই ইমেইলে যোগাযোগ করুন:</p>
