@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SebaLink BD - ডক্টর ড্যাশবোর্ড</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Arial', sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; }
+        .sidebar { width: 250px; background: #006a4e; height: 100vh; position: fixed; color: white; padding-top: 20px; }
+        .sidebar h2 { text-align: center; font-size: 20px; margin-bottom: 30px; }
+        .sidebar a { padding: 15px; text-decoration: none; color: white; display: block; border-bottom: 1px solid #005a42; }
+        .sidebar a:hover { background: #004d38; }
+        .main-content { margin-left: 260px; padding: 20px; }
+        .header { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .card { background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border-top: 4px solid #006a4e; }
+        .card i { font-size: 30px; color: #006a4e; margin-bottom: 10px; }
+        .btn-logout { background: #d9534f; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; float: right; }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>SebaLink BD <br> প্যানেল</h2>
+    <a href="#"><i class="fas fa-home"></i> ড্যাশবোর্ড</a>
+    <a href="#"><i class="fas fa-user-edit"></i> প্রোফাইল এডিট</a>
+    <a href="#"><i class="fas fa-chart-bar"></i> ভিজিটর রিপোর্ট</a>
+    <a href="index.html" style="background: #c9302c;">লগ আউট</a>
+</div>
+
+<div class="main-content">
+    <div class="header">
+        <a href="index.html" class="btn-logout">লগ আউট</a>
+        <h1>স্বাগতম, শামীম ভাই!</h1>
+        <p>আপনার ডক্টর প্রোফাইল এখন অনলাইন এবং ভেরিফাইড।</p>
+    </div>
+
+    <div class="card-grid">
+        <div class="card">
+            <i class="fas fa-eye"></i>
+            <h3>৫২৪</h3>
+            <p>প্রোফাইল ভিউ</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-calendar-check"></i>
+            <h3>১২</h3>
+            <p>নতুন সিরিয়াল</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-star"></i>
+            <h3>৪.৯</h3>
+            <p>ইউজার রেটিং</p>
+        </div>
+    </div>
+
+    <div style="margin-top: 40px; background: white; padding: 20px; border-radius: 8px;">
+        <h3>আপনার বর্তমান তথ্য:</h3>
+        <p><b>নাম:</b> শামীম হোসেন (Admin Test)</p>
+        <p><b>মেম্বারশিপ টাইপ:</b> প্রিমিয়াম (পেইড)</p>
+        <p><b>মেয়াদ শেষ হবে:</b> ৩০ ডিসেম্বর ২০২৬</p>
+        <button style="background: #006a4e; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">তথ্য আপডেট করুন</button>
+    </div>
+</div>
+
+</body>
+</html>
