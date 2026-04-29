@@ -84,5 +84,22 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+    <script>
+  // ডাটাবেজ রেফারেন্স তৈরি করা
+  const dbRef = firebase.database().ref('views');
+
+  // ডাটাবেজ থেকে রিয়েল-টাইম ভিউ কাউন্ট পড়া
+  dbRef.on('value', (snapshot) => {
+    const data = snapshot.val();
+    if (data !== null) {
+      document.getElementById("live-views").innerText = data;
+    }
+  });
+
+  // পেজ লোড হলে ভিউ ১ বাড়ানো (টেস্টিং এর জন্য)
+  dbRef.transaction((currentViews) => {
+    return (currentViews || 0) + 1;
+  });
+        </script>
 </body>
 </html>
